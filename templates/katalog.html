@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>color Katalog</title>
+</head>
+<body>
+    <h1>::: RENKLER :::</h1>
+    <ol>
+        {% for item in data %}
+        <p>{{ item.renk.ingilizce }} - {{ item.renk.turkce }}</p>
+    {% endfor %}    
+    </ol>
+</body>
+</html>
