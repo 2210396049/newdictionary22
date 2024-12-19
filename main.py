@@ -1,9 +1,18 @@
 import os
-
 from flask import Flask, send_file, render_template, request
 import xml.etree.ElementTree as ET
 
 app = Flask(__name__)
+
+# Load the XML data and create the 'catalog' list
+tree = ET.parse('katalog.xml')  # Replace 'renkler.xml' with your XML file path
+root = tree.getroot()
+catalog = []  # Initialize the catalog list
+for cd in root.findall('CD'):
+    cd_dict = {}
+    for child in cd:
+        cd_dict[child.tag] = child.text
+    catalog.append(cd_dict)
 
 
 @app.route("/")
@@ -14,32 +23,20 @@ def index():
 @app.route("/arama")
 def arama():
     anahtarKelime = request.args.get('anahtarKelime', '')
-
-    tree = ET.parse('katalog.xml')
-    root = tree.getroot()
-
-    colors = []
-    for color in root.findall('renk'):  # Now 'root' is defined
-        color_data = {}
-        color_data['ingilizce'] = color.find('ingilizce').text
-        color_data['turkce'] = color.find('turkce').text
-
-        # Filter data by search keyword
-        if anahtarKelime.lower() in color_data['ingilizce'].lower() or anahtarKelime.lower() in color_data['turkce'].lower():
-            colors.append(color_data)
-
-    return render_template('arama.html', data=colors)
+    return render_template('arama.html', data=anahtarKelime)
 
 
-@app.route("/katalog")
+@app.route("/katalog", methods=['GET'])
 def katalog():
-    tree = ET.parse('katalog.xml')
-    root = tree.getroot()
+    search_term = request.args.get('anahtarKelime')
+    data = []
 
-    colors = []
-    for color in root.findall('renk'):  # Now 'root' is defined
-        color_data = {}
-        color_data['ingilizce'] = color.find('ingilizce').text
-        color_data['turkce'] = color.find('turkce').text
-        colors.append(color_data)
-    return render_template('katalog.html', data=colors)
+    for item in catalog:
+        if search_term.lower() == item['ingilizce'].lower() or \
+           search_term.lower() == item['turkce'].lower():
+            data.append(item)
+            break  # Exit loop if found
+
+    return render_template('katalog.html', data=data)
+
+# ... (rest of your code) ...

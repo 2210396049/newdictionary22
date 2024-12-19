@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<COLORS>
-<COLOR>
-  <renk>
+<CATALOG>
+  <CD>
     <ingilizce>red</ingilizce>
     <turkce>kırmızı</turkce>
-  </renk>
-  <renk>
+  </CD>
+  <CD>
     <ingilizce>green</ingilizce>
     <turkce>yeşil</turkce>
-  </renk>
-  <renk>
+  </CD>
+  <CD>
     <ingilizce>blue</ingilizce>
     <turkce>mavi</turkce>
-  </renk>
-</COLOR>
-</COLORS>
+  </CD>
+  <CD>
+    <ingilizce>orange</ingilizce>
+    <turkce>turuncu</turkce> 
+  </CD>
+  <CD>
+    <ingilizce>yellow</ingilizce>
+    <turkce>sarı</turkce> 
+  </CD>
+  <CD>
+    <ingilizce>black</ingilizce>
+    <turkce>siyah</turkce> 
+  </CD>
+  <CD>
+    <ingilizce>pink</ingilizce>
+    <turkce>pembe</turkce> 
+  </CD>
+</CATALOG>

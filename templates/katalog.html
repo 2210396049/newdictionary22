@@ -1,14 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>color Katalog</title>
+  <h1>RENK SÖZLÜĞÜ</h1>  
 </head>
 <body>
-    <h1>::: RENKLER :::</h1>
-    <ol>
-        {% for item in data %}
-        <p>{{ item.renk.ingilizce }} - {{ item.renk.turkce }}</p>
-    {% endfor %}    
-    </ol>
+  {% if data %}
+    <ul>
+      {% for item in data %}
+        <li>{{ item.ingilizce }} = {{ item.turkce }}</li> 
+        <img src="static/{{ item.turkce }}.jpg" height="100"> 
+        <br>--- --- --- --- --- ---
+      {% endfor %} 
+    </ul>
+  {% else %}
+    <p>Aradığınız kelime sözlükte bulunamadı.</p> 
+  {% endif %}
 </body>
 </html>
